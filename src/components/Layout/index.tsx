@@ -10,7 +10,7 @@ import Navbar from '../Navbar'
 const Layout = ({ children }: Props) => (
   <S.Container>
     <Navbar />
-    {children}
+    <S.Wrapper>{children}</S.Wrapper>
   </S.Container>
 )
 
