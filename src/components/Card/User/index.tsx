@@ -1,11 +1,23 @@
+import { useNavigate } from 'react-router-dom'
+
 import Avatar from '../../../components/Avatar'
-import Button from '../../../components/Button'
-import { User } from '../../../services/typings'
+import Accordion from '../../../components/Accordion'
+import { Repo, User } from '../../../services/typings'
+import { VariantProps } from '../Simple'
+
 import * as S from './styles'
 
-function UserCard(user: User) {
+type Props = {
+  repos: Repo[] | null
+  user: User
+  variant?: VariantProps
+}
+
+function UserCard({ repos, user, variant = 'default' }: Props) {
+  const navigate = useNavigate()
+
   return (
-    <S.Container>
+    <S.Container variant={variant}>
       <S.AvatarAndName>
         <Avatar src={user.avatar_url} />
         <h1>{user.name}</h1>
@@ -17,7 +29,20 @@ function UserCard(user: User) {
         <S.BioDescription>{user.bio}</S.BioDescription>
       </S.Bio>
 
-      <Button>Repositórios</Button>
+      {repos && (
+        <Accordion>
+          {repos.map((repo) => (
+            <S.Item key={repo.name}>
+              <S.Repo>
+                <S.RepoName>{repo.name}</S.RepoName>
+                <S.More onClick={() => navigate('/repo', { state: repo })}>
+                  Branches
+                </S.More>
+              </S.Repo>
+            </S.Item>
+          ))}
+        </Accordion>
+      )}
     </S.Container>
   )
 }

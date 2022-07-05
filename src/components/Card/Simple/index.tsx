@@ -1,13 +1,18 @@
 import { ReactNode } from 'react'
 import * as S from './styles'
 
-type Props = {
+export type VariantProps = 'bordered' | 'default'
+
+export type Props = {
   children: ReactNode
   className?: string
+  variant?: VariantProps
 }
 
-const SimpleCard = ({ children, className }: Props) => (
-  <S.Container className={className}>{children}</S.Container>
+const SimpleCard = ({ children, className, variant = 'default' }: Props) => (
+  <S.Container className={className} variant={variant}>
+    {children}
+  </S.Container>
 )
 
 export default SimpleCard

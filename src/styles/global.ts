@@ -1,6 +1,6 @@
-import { createGlobalStyle, css } from 'styled-components'
+import { createGlobalStyle, css, DefaultTheme } from 'styled-components'
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<DefaultTheme>`
   ${({ theme }) => css`
     * {
       box-sizing: border-box;
@@ -13,6 +13,8 @@ const GlobalStyles = createGlobalStyle`
     html {
       font-size: 10px;
       font-family: ${theme.font.primary};
+
+      scroll-behavior: smooth;
     }
 
     p {
