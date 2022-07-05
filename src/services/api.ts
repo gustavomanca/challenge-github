@@ -11,7 +11,7 @@ export type ApiResponse = {
   message?: any
 }
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-type': 'application/json'

@@ -1,6 +1,6 @@
-import { createGlobalStyle, css, DefaultTheme } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
-const GlobalStyles = createGlobalStyle<DefaultTheme>`
+const GlobalStyles = createGlobalStyle`
   ${({ theme }) => css`
     * {
       box-sizing: border-box;
@@ -20,7 +20,6 @@ const GlobalStyles = createGlobalStyle<DefaultTheme>`
       font-size: ${theme.font.sizes.xsmall};
     }
   `}
-
 `
 
 export default GlobalStyles

@@ -1,17 +1,25 @@
 import { ReactNode } from 'react'
+
+import useLoader from '../../hooks/useLoader'
+
+import Loader from '../Loader'
+import Navbar from '../Navbar'
 import * as S from './styles'
 
 type Props = {
   children: ReactNode
 }
 
-import Navbar from '../Navbar'
+const Layout = ({ children }: Props) => {
+  const { loading } = useLoader()
 
-const Layout = ({ children }: Props) => (
-  <S.Container>
-    <Navbar />
-    <S.Wrapper>{children}</S.Wrapper>
-  </S.Container>
-)
+  return (
+    <S.Container>
+      {loading && <Loader />}
+      <Navbar />
+      <S.Wrapper>{children}</S.Wrapper>
+    </S.Container>
+  )
+}
 
 export default Layout
