@@ -1,6 +1,6 @@
 import styled, { css, DefaultTheme } from 'styled-components'
 
-import { Props } from '.'
+import { Props } from './typings'
 
 const kinds = {
   contained: (theme: DefaultTheme) => css`
@@ -16,6 +16,12 @@ const kinds = {
   outlined: (theme: DefaultTheme) => css`
     border: 1px solid ${theme.colors.secondary};
 
+    background-color: transparent;
+    color: ${theme.colors.secondary};
+  `,
+
+  text: (theme: DefaultTheme) => css`
+    border: none;
     background-color: transparent;
     color: ${theme.colors.secondary};
   `
