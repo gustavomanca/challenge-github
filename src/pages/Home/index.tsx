@@ -1,14 +1,21 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 import Button from '../../components/Button'
 import TextField from '../../components/TextField'
 
-import { findUser, findRepos } from '../../services/api'
+import { findUser } from '../../services/api'
 import { User } from '../../services/typings'
+
+import * as S from './styles'
 
 function Home() {
   const [fieldValue, setFieldValue] = useState('')
   const [user, setUser] = useState<User | null>(null)
+
+  function clear() {
+    setFieldValue('')
+    setUser(null)
+  }
 
   async function onSearchUser() {
     if (!fieldValue) return
@@ -16,28 +23,27 @@ function Home() {
     setUser(data)
   }
 
-  async function onSearchRepos() {
-    if (!fieldValue) return
-    const data = await findRepos(fieldValue)
-    console.log({ data })
+  function onSubmit(event: FormEvent) {
+    event.preventDefault()
+    onSearchUser()
   }
 
   return (
-    <div>
+    <S.Container onSubmit={onSubmit}>
       <TextField
         onChange={({ target }) => setFieldValue(target.value)}
         value={fieldValue}
       />
-      <Button onClick={onSearchUser} type="button">
-        Buscar
-      </Button>
+
+      <Button type="submit">Buscar</Button>
       {user && (
-        <>
-          <p>Repo:</p>
-          <Button onClick={onSearchRepos}>Buscar Repos</Button>
-        </>
+        <Button variant="outlined" onClick={clear}>
+          Limpar
+        </Button>
       )}
-    </div>
+
+      {JSON.stringify(user)}
+    </S.Container>
   )
 }
 
