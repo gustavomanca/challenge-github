@@ -9,6 +9,8 @@ export default {
   font: {
     family:
       "Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+    primary: "Montserrat, 'sans-serif'",
+    secondary: "Roboto, 'sans-serif'",
     light: 300,
     normal: 400,
     bold: 600,
