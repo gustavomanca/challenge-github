@@ -6,11 +6,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src --max-warnings=0",
+    "lint": "eslint src/**/*.{ts,tsx,js,jsx} --max-warnings=0 ",
     "postinstall": "husky install"
   },
   "lint-staged": {
-    "src/**/*": [
+    "src/**/*.{ts,tsx,js,jsx}": [
       "yarn lint --fix"
     ]
   },
