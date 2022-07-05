@@ -1,12 +1,18 @@
 {
   "name": "github-finder",
   "private": true,
-  "version": "0.0.0",
+  "author": {
+    "name": "Gustavo Manca",
+    "email": "gustavo.mancaa@gmail.com",
+    "url": "https://github.com/gustavomanca"
+  },
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src/**/*.{ts,tsx,js,jsx} --max-warnings=0 ",
+    "generate": "yarn plop --plopfile generators/plopfile.js",
     "postinstall": "husky install"
   },
   "lint-staged": {
@@ -34,6 +40,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "5.1.1",
     "lint-staged": "10.5.4",
+    "plop": "^3.1.1",
     "prettier": "2.7.1",
     "typescript": "^4.6.3",
     "vite": "^2.9.9"
