@@ -8,6 +8,11 @@ const kinds = {
     color: ${theme.colors.lightest};
   `,
 
+  info: (theme: DefaultTheme) => css`
+    background-color: ${theme.colors.gulfStream};
+    color: ${theme.colors.lightest};
+  `,
+
   outlined: (theme: DefaultTheme) => css`
     border: 1px solid ${theme.colors.secondary};
 
