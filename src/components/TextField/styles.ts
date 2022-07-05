@@ -11,5 +11,7 @@ export const Input = styled.input`
     width: 100%;
 
     padding: 0 ${theme.spacings.xxsmall};
+
+    font-size: ${theme.font.sizes.medium};
   `}
 `

@@ -1,10 +1,14 @@
 import { ButtonHTMLAttributes } from 'react'
 import * as S from './styles'
 
-type Props = ButtonHTMLAttributes<HTMLButtonElement>
+export type Props = {
+  variant?: 'contained' | 'outlined'
+} & ButtonHTMLAttributes<HTMLButtonElement>
 
-const Button = (props: Props) => (
-  <S.Container {...props}>{props.children}</S.Container>
+const Button = ({ children, variant = 'contained', ...props }: Props) => (
+  <S.Container variant={variant} {...props}>
+    {children}
+  </S.Container>
 )
 
 export default Button
