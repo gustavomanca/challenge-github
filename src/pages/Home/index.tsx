@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react'
 
 import Button from '../../components/Button'
+import Card from '../../components/Card/User'
 import TextField from '../../components/TextField'
 
 import { findUser } from '../../services/api'
@@ -35,14 +36,14 @@ function Home() {
         value={fieldValue}
       />
 
-      <Button type="submit">Buscar</Button>
+      <Button type="submit">Buscar usuário</Button>
       {user && (
         <Button variant="outlined" onClick={clear}>
           Limpar
         </Button>
       )}
 
-      {JSON.stringify(user)}
+      {user && <Card {...user} />}
     </S.Container>
   )
 }
