@@ -2,34 +2,29 @@ import styled, { css } from 'styled-components'
 
 import SimpleCard from '../Simple'
 
-export const Container = styled(SimpleCard)`
-  display: flex;
-  flex-direction: column;
-`
+export const Container = styled(SimpleCard)``
 
-export const Avatar = styled.img`
-  ${({ theme }) => css`
-    width: ${theme.spacings.xxxlarge};
-    border-radius: 50%;
-
-    box-shadow: 0 0 ${theme.spacings.xxsmall} rgba(0, 0, 0, 0.1);
-  `}
-`
-
-export const Wrapper = styled.div`
+export const AvatarAndName = styled.div`
   ${({ theme }) => css`
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: ${theme.spacings.xxsmall};
 
-    gap: ${theme.spacings.xsmall};
-
-    margin: 0 0 ${theme.spacings.xsmall};
+    margin: 0 0 ${theme.spacings.medium};
   `}
 `
 
-export const Info = styled.div``
+export const Bio = styled.div`
+  ${({ theme }) => css`
+    margin: 0 0 ${theme.spacings.large};
+  `}
+`
 
-export const Username = styled.h1``
+export const BioLabel = styled.h2`
+  ${({ theme }) => css`
+    margin: 0 0 ${theme.spacings.xxsmall};
+  `}
+`
 
-export const Text = styled.p``
+export const BioDescription = styled.p``

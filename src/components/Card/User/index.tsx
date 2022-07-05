@@ -1,24 +1,23 @@
+import Avatar from '../../../components/Avatar'
 import Button from '../../../components/Button'
 import { User } from '../../../services/typings'
 import * as S from './styles'
 
-type Props = {
-  onClick?: () => void
-} & User
-
-function UserCard({ avatar_url, location, login, onClick }: Props) {
+function UserCard(user: User) {
   return (
     <S.Container>
-      <S.Wrapper>
-        <S.Avatar src={avatar_url} />
-        <S.Info>
-          <S.Username>{login}</S.Username>
-          <S.Text>{location}</S.Text>
-        </S.Info>
-      </S.Wrapper>
-      <Button variant="info" onClick={onClick}>
-        Mais...
-      </Button>
+      <S.AvatarAndName>
+        <Avatar src={user.avatar_url} />
+        <h1>{user.name}</h1>
+        <p>Localização: {user.location}</p>
+      </S.AvatarAndName>
+
+      <S.Bio>
+        <S.BioLabel>Bio</S.BioLabel>
+        <S.BioDescription>{user.bio}</S.BioDescription>
+      </S.Bio>
+
+      <Button>Repositórios</Button>
     </S.Container>
   )
 }

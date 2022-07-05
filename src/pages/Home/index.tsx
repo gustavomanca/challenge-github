@@ -9,7 +9,7 @@ import { User } from '../../services/typings'
 
 import * as S from './styles'
 
-function Home() {
+function HomePage() {
   const [fieldValue, setFieldValue] = useState('')
   const [user, setUser] = useState<User | null>(null)
 
@@ -48,4 +48,4 @@ function Home() {
   )
 }
 
-export default Home
+export default HomePage
