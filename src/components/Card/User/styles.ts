@@ -30,7 +30,14 @@ export const BioLabel = styled.h2`
 
 export const BioDescription = styled.p``
 
-export const Item = styled.li``
+export const Item = styled.li`
+  ${({ theme }) => css`
+    && {
+      margin: 0 0 ${theme.spacings.xsmall};
+      padding: 0;
+    }
+  `}
+`
 
 export const Repo = styled(SimpleCard).attrs({
   variant: 'bordered'
