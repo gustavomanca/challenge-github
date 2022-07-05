@@ -14,6 +14,10 @@ const GlobalStyles = createGlobalStyle`
       font-size: 10px;
       font-family: ${theme.font.primary};
     }
+
+    p {
+      font-size: ${theme.font.sizes.xsmall};
+    }
   `}
 
 `

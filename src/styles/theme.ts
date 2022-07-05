@@ -29,7 +29,8 @@ export default {
     dark: '#1F282C',
     darkest: '#0D0D0E',
     light: '#DADFE2',
-    lightest: '#FFFFFF'
+    lightest: '#FFFFFF',
+    gulfStream: '#74A8A5'
   },
   spacings: {
     xxsmall: '0.8rem',
@@ -38,7 +39,8 @@ export default {
     medium: '3.2rem',
     large: '4.0rem',
     xlarge: '4.8rem',
-    xxlarge: '5.6rem'
+    xxlarge: '5.6rem',
+    xxxlarge: '6.4rem'
   },
   layers: {
     base: 10,
