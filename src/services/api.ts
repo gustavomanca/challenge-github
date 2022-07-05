@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import cogoToast from 'cogo-toast'
-import { Branch, Repo, User } from './typings'
+import { Branch, Commit, Repo, User } from './typings'
 
 const BASE_URL = 'https://api.github.com'
 
@@ -60,10 +60,9 @@ export async function listCommitsFromBranch(
   branch: string
 ) {
   try {
-    const { data } = await api.get(
+    const { data } = await api.get<Commit[]>(
       `/repos/${user}/${repo}/commits?sha=${branch}`
     )
-    debugger //eslint-disable-line
     return data
   } catch (error) {
     if (error instanceof AxiosError) {

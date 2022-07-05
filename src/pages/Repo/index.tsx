@@ -1,44 +1,46 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import Accordion from '../../components/Accordion'
-import Button from '../../components/Button'
-import { Branch, Repo } from '../../services/typings'
+import { Branch, Repo, User } from '../../services/typings'
 import { listBranches, listCommitsFromBranch } from '../../services/api'
+import { formatDate } from '../../utils/date'
 
 import * as S from './styles'
 
+type LocationProps = {
+  repo: Repo
+  user: User
+}
+
 function RepoPage() {
   const navigate = useNavigate()
-  const { state } = useLocation()
-  const repo: Repo = state as Repo
+  const location = useLocation().state as LocationProps
+  const repo = location.repo
 
   const [branches, setBranches] = useState<Branch[] | null>(null)
 
   const fetchBranches = useCallback(async () => {
-    const data = await listBranches(repo.owner.login, repo.name)
-    const branches = await fetchCommits(data)
-    setBranches(branches)
+    const branchesData = await listBranches(repo.owner.login, repo.name)
+    if (!branchesData) return
+    const mappedBranches = await fetchCommits(branchesData)
+    setBranches(mappedBranches)
   }, [repo]) //eslint-disable-line
 
-  const fetchCommits = useCallback(
-    async (branches: Branch[]) => {
-      const updated = branches.map(async (branch) => {
-        const commits = await listCommitsFromBranch(
-          repo.owner.login,
-          repo.name,
-          branch.name
-        )
-        console.log({ commits })
+  const fetchCommits = async (branchesList: Branch[]) => {
+    const promises = branchesList.map(({ name }) =>
+      listCommitsFromBranch(repo.owner.login, repo.name, name)
+    )
+    const commits = await Promise.all(promises)
+    const updated = branchesList.map((branch, index) => {
+      if (!commits[index]) return { ...branch }
+      else
         return {
           ...branch,
-          commits
+          commits: commits[index]
         }
-      })
-      return updated
-    },
-    [branches] //eslint-disable-line
-  )
+    })
+    return updated
+  }
 
   useEffect(() => {
     fetchBranches()
@@ -46,24 +48,28 @@ function RepoPage() {
 
   return (
     <div>
-      <Button variant="text" onClick={() => navigate(-1)}>
+      <S.Back onClick={() => navigate('/', { state: { user: location.user } })}>
         Voltar
-      </Button>
+      </S.Back>
 
       {branches && (
         <S.Branches>
           <S.BranchesLabel>Branches:</S.BranchesLabel>
 
-          {branches.map(({ name }) => (
-            <S.Branch key={name}>
-              <p>{name}</p>
+          {branches.map(({ name, commits }) => (
+            <S.Branch key={name} title={name}>
+              {commits?.length &&
+                commits?.map(({ commit, sha }) => (
+                  <S.Commit key={sha} title={commit.message}>
+                    <S.CommitMessage title={commit.message}>
+                      {commit.message}
+                    </S.CommitMessage>
+                    <S.CommitInfo>
+                      {commit.author.name} - {formatDate(commit.author.date)}
+                    </S.CommitInfo>
+                  </S.Commit>
+                ))}
             </S.Branch>
-          ))}
-
-          {branches.map(({ name }) => (
-            <Accordion key={name}>
-              <p>{name}</p>
-            </Accordion>
           ))}
         </S.Branches>
       )}

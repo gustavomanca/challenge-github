@@ -10,11 +10,10 @@ const GlobalStyles = createGlobalStyle<DefaultTheme>`
       -moz-osx-font-smoothing: grayscale;
     }
 
-    html {
+    html,
+    body {
       font-size: 10px;
       font-family: ${theme.font.primary};
-
-      scroll-behavior: smooth;
     }
 
     p {

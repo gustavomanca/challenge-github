@@ -30,12 +30,14 @@ function UserCard({ repos, user, variant = 'default' }: Props) {
       </S.Bio>
 
       {repos && (
-        <Accordion>
+        <Accordion title="Repositórios">
           {repos.map((repo) => (
             <S.Item key={repo.name}>
               <S.Repo>
                 <S.RepoName>{repo.name}</S.RepoName>
-                <S.More onClick={() => navigate('/repo', { state: repo })}>
+                <S.More
+                  onClick={() => navigate('/repo', { state: { repo, user } })}
+                >
                   Branches
                 </S.More>
               </S.Repo>
