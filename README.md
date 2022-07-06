@@ -1,8 +1,8 @@
 # Frontend Challenge
 
 ## Descrição do projeto
-##### Este teste consiste em uma busca de um usuário do GitHub, listando informações básicas e os seus repositórios públicos.
-##### Para cada repositório há um botão que, ao clicar, redireciona para uma nova página, onde listamos todas as branches do repositório em questão, bem como os commits de cada branch.
+Este teste consiste em uma busca de um usuário do GitHub, listando informações básicas e os seus repositórios públicos.
+Para cada repositório há um botão que, ao clicar, redireciona para uma nova página, onde listamos todas as branches do repositório em questão, bem como os commits de cada branch.
 
 ## Instalação
 Após clonar o repositório, navegar até o diretório e rodar o comando abaixo para instalar as dependências necessárias:
@@ -15,3 +15,12 @@ $ yarn
 $ yarn dev
 ``` 
 
+## Stack utilizada
+
+React, TypeScript, Styled Components, Axios, ESLint, Husky, Vite
+
+## Autor
+
+#### Gustavo Manca
+- [LinkedIn](https://www.linkedin.com/in/gustavomanca)
+- [GitHub](https://www.github.com/gustavomanca)
