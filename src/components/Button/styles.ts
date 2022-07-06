@@ -59,7 +59,10 @@ export const Container = styled.button<Props>`
   ${({ theme, disabled, variant = 'contained' }) => css`
     display: flex;
     align-items: center;
+<<<<<<< HEAD
     justify-content: center;
+=======
+>>>>>>> 21113e476c9056d062920e8908dae3ad808f7b97
 
     border: none;
     border-radius: ${theme.border.radius};
