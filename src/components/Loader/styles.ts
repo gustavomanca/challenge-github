@@ -71,7 +71,7 @@ export const Container = styled.div`
 `
 
 export const Overlay = styled.span`
-  position: absolute;
+  position: fixed;
   inset: 0 0 0 0;
   height: 100vh;
   width: 100vw;

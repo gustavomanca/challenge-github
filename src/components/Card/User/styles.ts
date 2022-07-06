@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components'
 import Button from '../../../components/Button'
 import SimpleCard from '../Simple'
 
+export const Link = styled(Button).attrs({})``
+
 export const Container = styled(SimpleCard)``
 
 export const AvatarAndName = styled.div`

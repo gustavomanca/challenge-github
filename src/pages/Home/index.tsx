@@ -1,5 +1,5 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import Button from '../../components/Button'
 import Card from '../../components/Card/User'
@@ -15,7 +15,9 @@ type LocationProps = {
 }
 
 function HomePage() {
-  const location = useLocation().state as LocationProps
+  const locationState = useLocation().state as LocationProps
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const [fieldValue, setFieldValue] = useState('')
   const [user, setUser] = useState<User | null>(null)
@@ -24,6 +26,7 @@ function HomePage() {
   function clear() {
     setFieldValue('')
     setUser(null)
+    navigate(location.pathname, {})
   }
 
   const fetchRepos = useCallback(async () => {
@@ -50,30 +53,33 @@ function HomePage() {
   }, [fetchRepos, user])
 
   useEffect(() => {
-    if (!location?.user) return
-    setFieldValue(location.user.login)
-    setUser(location.user)
+    if (!locationState?.user) return
+    setFieldValue(locationState.user.login)
+    setUser(locationState.user)
   }, []) //eslint-disable-line
 
   return (
-    <S.Container onSubmit={onSubmit}>
-      <TextField
-        onChange={({ target }) => setFieldValue(target.value)}
-        value={fieldValue}
-      />
+    <S.Container>
+      <S.Title>Busque um usuário do GitHub</S.Title>
+      <S.Form onSubmit={onSubmit}>
+        <TextField
+          onChange={({ target }) => setFieldValue(target.value)}
+          value={fieldValue}
+        />
 
-      <S.Actions>
-        <Button disabled={!fieldValue} type="submit">
-          Buscar usuário
-        </Button>
-        {fieldValue && (
-          <Button variant="outlined" onClick={clear}>
-            Limpar
+        <S.Actions>
+          <Button disabled={!fieldValue} type="submit">
+            Buscar usuário
           </Button>
-        )}
-      </S.Actions>
+          {fieldValue && (
+            <Button variant="outlined" onClick={clear}>
+              Limpar
+            </Button>
+          )}
+        </S.Actions>
 
-      {user && <Card repos={repos} user={user} variant="bordered" />}
+        {user && <Card repos={repos} user={user} variant="bordered" />}
+      </S.Form>
     </S.Container>
   )
 }
