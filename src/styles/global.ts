@@ -16,8 +16,13 @@ const GlobalStyles = createGlobalStyle`
       font-family: ${theme.font.primary};
     }
 
+    a,
     button {
       cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
     }
 
     p {

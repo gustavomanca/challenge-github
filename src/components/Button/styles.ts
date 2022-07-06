@@ -48,11 +48,19 @@ const modifiers = {
   disabled: (theme: DefaultTheme) => css`
     background-color: ${theme.colors.light};
     cursor: not-allowed;
+
+    &:hover {
+      background-color: ${theme.colors.light};
+    }
   `
 }
 
 export const Container = styled.button<Props>`
   ${({ theme, disabled, variant = 'contained' }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: none;
     border-radius: ${theme.border.radius};
 
