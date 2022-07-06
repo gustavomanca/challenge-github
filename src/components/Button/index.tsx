@@ -2,8 +2,13 @@ import * as S from './styles'
 
 import { Props } from './typings'
 
-const Button = ({ children, variant = 'contained', ...props }: Props) => (
-  <S.Container variant={variant} {...props}>
+const Button = ({
+  children,
+  disabled,
+  variant = 'contained',
+  ...props
+}: Props) => (
+  <S.Container disabled={disabled} variant={variant} {...props}>
     {children}
   </S.Container>
 )

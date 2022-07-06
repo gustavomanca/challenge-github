@@ -3,6 +3,9 @@ export default {
     container: '130rem',
     gutter: '3.2rem'
   },
+  breakpoints: {
+    large: '992px'
+  },
   border: {
     radius: '0.4rem'
   },

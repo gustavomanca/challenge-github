@@ -16,6 +16,10 @@ const GlobalStyles = createGlobalStyle`
       font-family: ${theme.font.primary};
     }
 
+    button {
+      cursor: pointer;
+    }
+
     p {
       font-size: ${theme.font.sizes.xsmall};
     }

@@ -50,7 +50,7 @@ function HomePage() {
   }, [fetchRepos, user])
 
   useEffect(() => {
-    if (!location.user) return
+    if (!location?.user) return
     setFieldValue(location.user.login)
     setUser(location.user)
   }, []) //eslint-disable-line
@@ -62,12 +62,16 @@ function HomePage() {
         value={fieldValue}
       />
 
-      <Button type="submit">Buscar usuário</Button>
-      {fieldValue && (
-        <Button variant="outlined" onClick={clear}>
-          Limpar
+      <S.Actions>
+        <Button disabled={!fieldValue} type="submit">
+          Buscar usuário
         </Button>
-      )}
+        {fieldValue && (
+          <Button variant="outlined" onClick={clear}>
+            Limpar
+          </Button>
+        )}
+      </S.Actions>
 
       {user && <Card repos={repos} user={user} variant="bordered" />}
     </S.Container>
